@@ -52,4 +52,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  storybook: {
+    // Search for stories in the `~/components` and `~/stories` directories
+    stories: ['~/components/**/*.stories.js', '~/stories/**/*.stories.js'],
+  },
 }
