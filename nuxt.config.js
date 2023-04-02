@@ -39,10 +39,15 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  bootstrapVue: {
+    // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
+    icons: true,
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://sys-dev.searchandstay.com/api/admin',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
