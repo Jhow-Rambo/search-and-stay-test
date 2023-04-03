@@ -8,33 +8,35 @@
         id="email-input-group"
         label="Email"
         label-for="email-input"
-        description="Digite o seu email."
+        description="Enter your email."
       >
         <b-form-input
           id="email-input"
           v-model="email"
           type="email"
-          placeholder="Digite o seu email."
+          placeholder="test@gmail.com"
           required
         ></b-form-input>
       </b-form-group>
 
       <b-form-group
         id="password-input-group"
-        label="Senha"
+        label="Password"
         label-for="password-input"
-        description="Digite a sua senha."
+        description="Enter your password."
       >
         <b-form-input
           id="password-input"
           v-model="password"
           type="password"
-          placeholder="Digite a sua senha."
+          placeholder="*****"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary" class="mt-3">Entrar</b-button>
+      <p v-if="errorMessage" class="text-danger">{{ errorMessage }}</p>
+
+      <b-button type="submit" variant="primary" class="mt-3">Login</b-button>
     </b-form>
   </b-container>
 </template>
@@ -62,6 +64,7 @@ export default {
     return {
       email: '',
       password: '',
+      errorMessage: '',
     }
   },
   methods: {
@@ -79,7 +82,12 @@ export default {
           this.$router.push('/rules')
         })
         .catch((error) => {
-          console.log(error)
+          if (error.response && error.response.status === 404) {
+            this.errorMessage =
+              'Email or Password incorrect. Please, try again.'
+          } else {
+            console.log(error)
+          }
         })
     },
   },
