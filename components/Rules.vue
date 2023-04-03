@@ -225,7 +225,8 @@ export default {
   max-width: 600px;
   width: 100%;
   border-radius: 5px;
-  box-shadow: 0 4px 14px rgb(0 0 0 / 50%);
+  box-shadow: rgb(50 50 93 / 25%) 0 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0 1px 3px -1px;
   margin: 0 auto;
 }
 
