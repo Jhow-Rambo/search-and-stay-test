@@ -47,11 +47,16 @@
       </div>
     </b-container>
 
-    <b-modal v-model="showCreateModal" title="Nova Regra" hide-footer>
+    <b-modal
+      v-model="showCreateModal"
+      title="New Rule"
+      hide-footer
+      @hide="resetModalInput"
+    >
       <b-form @submit.prevent="createRule">
         <b-form-group
           id="input-group-1"
-          label="Nome da regra:"
+          label="Name of rule:"
           label-for="input-1"
         >
           <b-form-input
@@ -189,6 +194,10 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+
+    resetModalInput() {
+      this.newRuleName = ''
     },
 
     logout() {
