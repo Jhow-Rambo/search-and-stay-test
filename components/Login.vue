@@ -76,6 +76,7 @@ export default {
         .post(this.$axios.defaults.baseURL + '/login_json', data)
         .then((response) => {
           localStorage.setItem('token', response.data.data.result.access_token)
+          this.$router.push('/rules')
         })
         .catch((error) => {
           console.log(error)
