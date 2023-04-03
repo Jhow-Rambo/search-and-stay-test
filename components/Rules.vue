@@ -12,26 +12,39 @@
           <b-button variant="danger" size="lg" @click="logout">Logout</b-button>
         </div>
       </div>
-      <ul>
-        <li v-for="entity in rules" :key="entity.id">
-          <div class="rule-input-container">
-            <input
-              v-model="entity.name"
-              class="rule-input"
-              type="text"
-              maxlength="50"
-            />
-          </div>
-          <div class="rule-buttons-container">
-            <b-button variant="danger" size="lg" @click="removeRule(entity.id)"
-              >Delete</b-button
-            >
-            <b-button variant="primary" size="lg" @click="updateRule(entity)"
-              >Save</b-button
-            >
-          </div>
-        </li>
-      </ul>
+
+      <div
+        v-if="isLoading"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <b-spinner variant="primary" label="Loading..."></b-spinner>
+      </div>
+
+      <div v-else>
+        <ul>
+          <li v-for="entity in rules" :key="entity.id">
+            <div class="rule-input-container">
+              <input
+                v-model="entity.name"
+                class="rule-input"
+                type="text"
+                maxlength="50"
+              />
+            </div>
+            <div class="rule-buttons-container">
+              <b-button
+                variant="danger"
+                size="lg"
+                @click="removeRule(entity.id)"
+                >Delete</b-button
+              >
+              <b-button variant="primary" size="lg" @click="updateRule(entity)"
+                >Save</b-button
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
     </b-container>
 
     <b-modal v-model="showCreateModal" title="Nova Regra" hide-footer>
@@ -66,7 +79,7 @@
 </template>
 
 <script>
-import { BContainer, BButton } from 'bootstrap-vue'
+import { BContainer, BButton, BSpinner } from 'bootstrap-vue'
 import axios from 'axios'
 
 export default {
@@ -74,12 +87,14 @@ export default {
   components: {
     BContainer,
     BButton,
+    BSpinner,
   },
   data() {
     return {
       rules: [],
       showCreateModal: false,
       newRuleName: '',
+      isLoading: true,
     }
   },
   created() {
@@ -100,6 +115,9 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+        })
+        .finally(() => {
+          this.isLoading = false
         })
     },
     removeRule(id) {
