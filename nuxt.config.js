@@ -14,6 +14,10 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  generate: {
+    dir: 'dist',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
@@ -43,11 +47,6 @@ export default {
   toast: {
     position: 'bottom-right',
     timeout: 2000,
-  },
-
-  bootstrapVue: {
-    // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
-    icons: true,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
