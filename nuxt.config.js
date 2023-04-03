@@ -37,7 +37,13 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'vue-toastification/nuxt',
   ],
+
+  toast: {
+    position: 'bottom-right',
+    timeout: 2000,
+  },
 
   bootstrapVue: {
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
